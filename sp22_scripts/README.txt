@@ -1,7 +1,13 @@
 Alan's notes of TILES from Spring Semester!
 Notes: I worked on a Macbook, so not super sure about Windows OS
 
-1) Setting up TILES
+-- What I Did --
+1) Modified TILES.py algorithm to have k4s as strong communities! 
+ctrl-f "CHANGE HERE" to see the specific areas I changed to support this
+2) added various debugging scripts to test the above change, and count the number of communities outputted
+
+
+-- Setting up TILES --
 - I mostly referred to the readme in TILES for setting things up.
 Installation and running the files, for the most part, was incredibly smooth. 
 I made a venv from the requirements.txt file. Here's how to set it up: (skip step 1 once venv is created)
@@ -29,6 +35,7 @@ there should be 0 total communities found. I've commented where I modified the T
 (all marked with CHANGE HERE)!
 
 ** All the tsv files are stored in /TILES/tiles/test for easy access! Add any new tsv files into that file for ease of access.
+Note that the tsv format should be a list of edges, as follows: timestamp node1 node2, where each value is an integer
 
 --- My Code ---
 The code I contributed is in the sp22_scripts folder. There are 3 scripts I added:
