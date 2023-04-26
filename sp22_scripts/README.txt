@@ -53,6 +53,7 @@ algorithm file. It should be able to be easily modified to support k5s, k6s, ...
 1) running TILES on different datasets and visualizing these strong communities detected! Seeing how changing the 
 'strong community threshold' (k3 -> k4 -> kn) affects the communities returned, and applying it to interesting 
 datasets (CollegeMsg dataset). 
+    a) currently been exploring this dataset: https://snap.stanford.edu/data/CollegeMsg.html
 2) Figuring out why TILES doesn't 'merge' communities / outputs communities that are subsets of one another?
 3) Recreating the graphs from page 1233 (pg 21 on the pdf) in the original TILES paper. Shouldn't be too bad with the
 pre-existing count_communities code!
