@@ -4,7 +4,7 @@
 # n sets, m possible elements per set -> O(nlogn + )
 # use a hashmap with key = node number and value starting at 1, multiplied by primes as we add sets into (superset) list? and store the highest current prime val (go up)
 
-def count_communities(path):
+def countCommunities(path):
     communities = []
     supersets = []
 
@@ -15,9 +15,13 @@ def count_communities(path):
         line = line.replace('[', '').replace(']', '').replace(',', '')
         intlist = list(map(int,line.split()))
         communities.append(intlist)
-    communities.sort(key = lambda x: len(x), reverse = True)
-
+    
+    # the total number of communities
+    print(len(communities))
+    
+    
     # computes the list of superset communities (removes subsets)
+    communities.sort(key = lambda x: len(x), reverse = True)
     for candidate in communities:
         add_in = True
         for superset in supersets:
@@ -26,7 +30,7 @@ def count_communities(path):
                 break
         if add_in:
             supersets.append(candidate)
-    
+    # total number of superset communities (removes subsets)
     print(len(supersets))
     
 # given two lists of length n (sorted), computes if one is subset of other in O(n)
@@ -53,4 +57,4 @@ def isSubset(candidate, superset):
       
 
 
-count_communities("./test_1/strong-communities-140")
+countCommunities("./test_1/strong-communities-140")

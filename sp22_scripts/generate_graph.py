@@ -9,6 +9,7 @@
 import csv 
 
 def write_k3s():
+    # random timestamp
     timestamp = 1082441188; 
     with open('k3_communities.tsv', 'w', newline='') as tsvfile:
         writer = csv.writer(tsvfile, delimiter='\t', lineterminator='\n')

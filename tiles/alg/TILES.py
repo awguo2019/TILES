@@ -248,7 +248,7 @@ class TILES(object):
                                         ctc = set(coms_to_change[c])
                                         coms_to_change[c] = list(ctc)
                             else:
-                                # if there are less than n neighbors remove from community CHANGE HERE
+                                # if there are less than n (2) neighbors remove from community CHANGE HERE
                                 if len(list(self.g.neighbors(u))) < 3:
                                     coms_u = [x for x in self.g.node[u]['c_coms'].keys()]
                                     for cid in coms_u:
@@ -544,5 +544,7 @@ class TILES(object):
                                     cflag = True
         return central
 
-an = TILES(filename="../test/k4_communities.tsv")
+
+# hacky way to run file: change filename here to run this modified TILES algorithm
+an = TILES(filename="../test/k3_communities.tsv")
 an.execute()
