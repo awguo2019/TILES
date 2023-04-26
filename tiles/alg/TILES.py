@@ -228,7 +228,7 @@ class TILES(object):
                         # (multiple occurrence of the edge: remove only the oldest)
                         if w > 1:
                             self.g.adj[u][v]["weight"] = w - 1
-                            e = (u,  v, w-1)
+                            e = (u, v, w-1)
                             qr.put((at, e))
 
                         else:
@@ -248,12 +248,13 @@ class TILES(object):
                                         ctc = set(coms_to_change[c])
                                         coms_to_change[c] = list(ctc)
                             else:
-                                if len(list(self.g.neighbors(u))) < 2:
+                                # if there are less than n neighbors remove from community CHANGE HERE
+                                if len(list(self.g.neighbors(u))) < 3:
                                     coms_u = [x for x in self.g.node[u]['c_coms'].keys()]
                                     for cid in coms_u:
                                         self.remove_from_community(u, cid)
 
-                                if len(list(self.g.neighbors(v))) < 2:
+                                if len(list(self.g.neighbors(v))) < 3:
                                     coms_v = [x for x in self.g.node[v]['c_coms'].keys()]
                                     for cid in coms_v:
                                         self.remove_from_community(v, cid)
@@ -280,8 +281,9 @@ class TILES(object):
                 continue
 
             c_nodes = self.communities[c].keys()
-
-            if len(c_nodes) > 3:
+            
+            # more than 3 community nodes CHANGE HERE
+            if len(c_nodes) > 4:
 
                 sub_c = self.g.subgraph(c_nodes)
                 c_components = nx.number_connected_components(sub_c)
@@ -299,7 +301,8 @@ class TILES(object):
                     components = nx.connected_components(sub_c)
                     for com in components:
                         if first:
-                            if len(com) < 3:
+                            # less than 3 -> broken community CHANGE HERE
+                            if len(com) < 4:
                                 self.destroy_community(c)
                             else:
                                 to_mod = list(set(com) & set(coms_to_change[c]))
@@ -308,13 +311,15 @@ class TILES(object):
                             first = False
 
                         else:
-                            if len(com) > 3:
+                            # more than 3 -> okay CHANGE HERE
+                            if len(com) > 4:
                                 # update the memberships: remove the old ones and add the new one
                                 to_mod = list(set(com) & set(coms_to_change[c]))
                                 sub_c = self.g.subgraph(to_mod)
 
                                 central = self.centrality_test(sub_c).keys()
-                                if len(central) >= 3:
+                                # 3? not sure about this CHANGE HERE
+                                if len(central) >= 4:
                                     actual_id = self.new_community_id
                                     new_ids.append(actual_id)
                                     for n in central:
@@ -340,7 +345,8 @@ class TILES(object):
         for rm in remove_node:
             self.remove_from_community(rm, c)
 
-        if len(central) < 3:
+        # removing community 3 CHANGE HERE
+        if len(central) < 4:
             self.destroy_community(c)
         else:
             not_central = set(sub_c.nodes()) - set(central)
@@ -413,7 +419,8 @@ class TILES(object):
             com = comk.keys()
 
             if self.communities[idc] is not None:
-                if len(com) > 2:
+                # more than 2 okay CHANGE HERE
+                if len(com) > 3:
                     key = tuple(sorted(com))
 
                     # Collision check and merge index build (maintaining the lowest id)
@@ -536,3 +543,6 @@ class TILES(object):
                                         central[n] = None
                                     cflag = True
         return central
+
+an = TILES(filename="../test/k4_communities.tsv")
+an.execute()
