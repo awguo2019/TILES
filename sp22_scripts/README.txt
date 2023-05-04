@@ -12,7 +12,7 @@ ctrl-f "CHANGE HERE" to see the specific areas I changed to support this
 Installation and running the files, for the most part, was incredibly smooth. 
 I made a venv from the requirements.txt file. Here's how to set it up: (skip step 1 once venv is created)
     1) To create a venv, in your working directory, run: python -m venv .venv
-    2) Once the venv is created, in terminal: source .venv/bin/activate (for windows: .venv\Scripts\activate.bat)
+    2) Once the venv is created, in terminal: source venv/bin/activate (for windows: .venv\Scripts\activate.bat)
     3) Now, you should see (.venv) in terminal. Now, install the requirements via: pip install -r requirements.txt
     4) When done, deactivate with the command: deactivate
 Once in your venv with the requirements installed, you can run TILES!
