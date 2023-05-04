@@ -24,6 +24,15 @@ python3 tiles tiles/test/[filename.tsv]
 Alternatively, you can also run the __main__.py file directy. Navigate to TILES, and run:
 python3 tiles/__main__.py tiles/test/[filename.tsv]
 
+~~~ After running TILES, the program will generate 5 types of files: ~~~
+--- Extraction Status (extraction_status.txt): Simplest, basically logs what TILES did. For each slice (unit of time), lists
+the amount of edges added, edges removed, merged and total communities
+--- graph-n (graph-n.gz): lists the edges in the graph, vertex / vertex / 1
+--- merging-n (merging-n.gz): not super sure what this is---for the most part, when I clicked on it, its empty. Could be worth looking into.
+--- splitting-n (splitting-n.gz): similar to merging-n. Might be worth looking into how TILES creates this file.
+--- strong-communities-n (strong-communities-n.gz): lists the strong communities, as a bracketed list of vertices. Output is a list of lists
+of integers, with a community per line. My count_communities code takes this as input to parse.
+
 2) running modified TILES (strong community = k4/kn, TILES.py)
 To run the modified TILES algorithm (TILES.py file), navigate all the way into the alg folder (TILES/tiles/alg),
 and then change the lines of code at the very bottom to read the tsv file desired (currently set to k3_communities). 
